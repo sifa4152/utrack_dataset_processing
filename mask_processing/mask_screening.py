@@ -1,7 +1,7 @@
 # =============================================================================
 ## TARGET CELL SCREENING FOR LAT & LON OF STUDY REGIONS
-## Simon Felix Fahrländer, PIK, BGWater Project 
-## updated: 01/06/2023
+## simonfa, PIK, BGWater Project 
+## updated: 19/06/2024
 # =============================================================================
 import os 
 import pandas as pd
