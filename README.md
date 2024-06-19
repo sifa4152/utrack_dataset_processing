@@ -6,6 +6,7 @@ Potsdam Institute for Climate Impact Research - PIK
 ## Table of Contents
 
 - [Description](#description)
+- [Python Environment](#python-environment)
 - [Input Processing](#input-processing)
 - [Mask Processing](#mask-processing)
 - [UTrack Database Moisture Tracking](#utrack-database-moisture-tracking)
