@@ -1,6 +1,6 @@
 # =============================================================================
 # ERA5 Reanalysis Precipitation and Evaporation Analysis
-# Simon Felix Fahrländer
+# simonfa, PIK
 # 2023-07-27
 # =============================================================================
 # IMPORTS
