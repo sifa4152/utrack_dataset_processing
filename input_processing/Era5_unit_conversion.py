@@ -1,6 +1,6 @@
 # =============================================================================
 # ERA5 REANALYSIS UNIT CONVERSION from m of water equivalent per day to mm/month and mm/year
-# Simon Felix Fahrlaender
+# simonfa, PIK
 # 14/11/2022
 # =============================================================================
 import os
