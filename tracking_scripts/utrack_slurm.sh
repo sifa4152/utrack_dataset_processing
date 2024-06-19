@@ -7,21 +7,19 @@
 #SBATCH --account=open                                                          
 #SBATCH --partition=standard                                                     
 #SBATCH --qos=short                                                                     # short:24h; medium:7d; long:30d
-#SBATCH --array=1-3                                                                  # how many tasks in the array
+#SBATCH --array=1-300                                                                   # how many tasks in the array (num of job packages)
 #SBATCH --cpus-per-task=1                                                               # one CPU core per task
 #SBATCH --output=hpc_out/utrack-%j-%a.out                                        
 #SBATCH --error=hpc_out/utrack-%j-%a.err                                        
-#SBATCH --workdir=/p/projects/open/simon/bgwater/GCEW/final_report/NL_BE_case_study/2024_05_08_NL_BE_runs 
+#SBATCH --workdir=/path/to/directory/with/tracking/scripts
 #SBATCH --mail-type=ALL                                                         
-#SBATCH --mail-user=simon.fahrlaender@pik-potsdam.de                            
+#SBATCH --mail-user=hpc.user@email.com                           
 
 
 # Load software
-module load anaconda/2021.11c                                                    
-source activate utrack_env                                                      
+module load anaconda/2021.11c          # load anaconda module                                                    
+source activate utrack_env             # load python environment                                         
 
-# alias python='/p/projects/open/simon/envs/utrack_env/bin/python3.9'
-# . ~/.bashrc
 
 # Run python script with a command line argument
 srun python main.py $SLURM_ARRAY_TASK_ID                                      
