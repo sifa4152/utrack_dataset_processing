@@ -21,11 +21,13 @@ def get_closest_index(lats, lat):
 
 # Get monthly moisture footprints (forwards & backwards)
 def track_footprints(month, latitude, longitude, evap, precip, grid_area):
+    
     # Create lat,lon arrays equal to dimensions of tracking dataset
     lats = np.arange(90, -90, -0.5)
     lons = np.arange(0, 360, 0.5)
     latidx = get_closest_index(lats, latitude)
     lonidx = get_closest_index(lons, longitude)
+    
     # UTrack atmospheric moisture trajectory dataset
     UTrack = xr.open_dataset(
         os.path.join(
@@ -50,6 +52,7 @@ def track_footprints(month, latitude, longitude, evap, precip, grid_area):
         )
     )
     forward_fp = forward_fp * ET_source
+    
     # Backward tracking footprint
     fp_bw = UTrack[:, :, latidx, lonidx].values
     fp_bw = fp_bw * -0.1
@@ -91,7 +94,7 @@ def moisture_tracking_runner(Screened_data):
     precip = (xr.where(precip > 0, precip, 0))
 
     # Water balance correction step 1 
-    # ALPHA calculated in: bgwater/papers/paper_III/Elena_comparison/ERA5_water_balance.py
+    # ALPHA calculated in: ~/input_processing/ERA5_water_balance.py
     if settings.apply_correction == True:
 
         # Correction factors of 10yr ERA5 mean
@@ -109,6 +112,7 @@ def moisture_tracking_runner(Screened_data):
 
     Forward_footprint_monthly_final = np.zeros(shape=(12, 360, 720))
     Backward_footprint_monthly_final = np.zeros(shape=(12, 360, 720))
+    
     for j in range(Screened_data.shape[0]):  # iterate over source/sink cells
         latitude, longitude = np.array(Screened_data.loc[j])
         Forward_footprint_monthly = np.zeros(shape=(12, 360, 720))
