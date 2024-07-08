@@ -21,7 +21,7 @@ Potsdam Institute for Climate Impact Research - PIK
 
 - Use cases, descriptions and reconciliation of tracking discrepancies to ERA5 forcing data:
   - Fahrländer, S. F., Wang‐Erlandsson, L., Pranindita, A., &#38; Jaramillo, F. (2024). Hydroclimatic Vulnerability of Wetlands to Upwind Land Use Changes. Earth’s Future, (3). <https://doi.org/10.1029/2023EF003837>
-  - Elena De Petrillo, Simon Fahrländer, Marta Tuninetti et al. Reconciling tracked atmospheric water flows to close the global freshwater cycle, 29 April 2024, PREPRINT (Version 1) available at Research Square <https://doi.org/10.21203/rs.3.rs-4177311/v1>
+  - Elena De Petrillo, Simon Fahrländer, Marta Tuninetti, Lauren Seaby Andersen, Luca Monaco, Luca Ridolfi, Francesco Laio. Reconciling tracked atmospheric water flows to close the global freshwater cycle, 29 April 2024, PREPRINT (Version 1) available at Research Square <https://doi.org/10.21203/rs.3.rs-4177311/v1>
 
 - This version includes a water balance correction method in the moisture_tracking_runner() function in utrack_functions.py
   - the correction can be enabled and disabled via the 'apply_correction' flag in settings.py
