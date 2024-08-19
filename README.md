@@ -6,10 +6,10 @@ Potsdam Institute for Climate Impact Research - PIK
 ## Table of Contents
 
 - [Description](#description)
-- [Python Environment](#python-environment)
 - [Input Processing](#input-processing)
 - [Mask Processing](#mask-processing)
 - [UTrack Database Moisture Tracking](#utrack-database-moisture-tracking)
+- [Post-Processing](#post-processing)
 
 ## Description
 
@@ -21,7 +21,7 @@ Potsdam Institute for Climate Impact Research - PIK
 
 - Use cases, descriptions and reconciliation of tracking discrepancies to ERA5 forcing data:
   - Fahrländer, S. F., Wang‐Erlandsson, L., Pranindita, A., &#38; Jaramillo, F. (2024). Hydroclimatic Vulnerability of Wetlands to Upwind Land Use Changes. Earth’s Future, (3). <https://doi.org/10.1029/2023EF003837>
-  - Elena De Petrillo, Simon Fahrländer, Marta Tuninetti, Lauren Seaby Andersen, Luca Monaco, Luca Ridolfi, Francesco Laio. Reconciling tracked atmospheric water flows to close the global freshwater cycle, 29 April 2024, PREPRINT (Version 1) available at Research Square <https://doi.org/10.21203/rs.3.rs-4177311/v1>
+  - De Petrillo, E. & Fahrländer, S.F. , Tuninetti, M., Andersen, L.S., Monaco, L., Ridolfi, L., Laio, F., Reconciling tracked atmospheric water flows to close the global freshwater cycle, 29 April 2024, PREPRINT (Version 1) available at Research Square <https://doi.org/10.21203/rs.3.rs-4177311/v1>
 
 - This version includes a water balance correction method in the moisture_tracking_runner() function in utrack_functions.py
   - the correction can be enabled and disabled via the 'apply_correction' flag in settings.py
@@ -60,7 +60,7 @@ Filepaths have to be adjusted in these scripts! The water balance calculation sc
 - **shp2attr_raster.py** --> bash script to convert shapefiles to raster files with the same coordinates as the UTrack grid; can be used as a command line tool: `./convert_shapefiles.sh [-a <attribute_or_value>] SHAPEFILE_NAME1 SHAPEFILE_NAME2 ...` but default burn value is 1.
 - **mask_screening.py** --> script to screen masks for coordinates and write out coordinates in zone specific csv files
 
-The bash script takes the shapefile of the target zone(s) and converts them to raster files (netCDF) in UTrack format (specified in utrack_grid.txt). File should be run as command line tool in the folder of the shapefile and shapefile name should be given as argument. The burn value can be specified with the -a flag, otherwise it is set to 1. Alternatively, an attribute from the shapefile can be used as burn value with the -a flag.
+The bash script takes the shapefile of the target zone(s) and converts them to raster files (NetCDF) in UTrack format (specified in utrack_grid.txt). File should be run as command line tool in the folder of the shapefile and shapefile name should be given as argument. The burn value can be specified with the -a flag, otherwise it is set to 1. Alternatively, an attribute from the shapefile can be used as burn value with the -a flag.
 
 The mask screening script takes the raster files and screens them for coordinates. The coordinates are written out in csv files for each zone. Filepaths and burn values/ encoding values have to be adjusted in the script. The script pararellizes the screening process and splits different zones up on separate cores.
 
@@ -102,4 +102,10 @@ After completion, merge job packages
 
 ### Output
 
-settings.py specifies the output directory for the moisture footprints. The output is in netCDF format and contains the moisture footprints for each mask in the specified region of interest. The output is in litres per year or litres per month (monthly output).
+settings.py specifies the output directory for the moisture footprints. The output is in NetCDF format and contains the moisture footprints for each mask in the specified region of interest. The output is in litres per year or litres per month (monthly output).
+The delineation of atmospheric watersheds (evaporationsheds and precipitationsheds), analysis on the "most-influentia part" of the moisture source and sink regions, as well as the calculation of moisture recycling indices can be done with the post-processing scripts (still under development - 18/08/2024).
+
+## Post-Processing
+
+- **atmos_watersheds.py** --> script to delineate atmospheric watersheds from moisture footprints (NetCDF and GeoJSON)
+- **settings.py** --> filepaths and settings
