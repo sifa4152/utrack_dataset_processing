@@ -103,7 +103,7 @@ After completion, merge job packages
 ### Output
 
 settings.py specifies the output directory for the moisture footprints. The output is in NetCDF format and contains the moisture footprints for each mask in the specified region of interest. The output is in litres per year or litres per month (monthly output).
-The delineation of atmospheric watersheds (evaporationsheds and precipitationsheds), analysis on the "most-influentia part" of the moisture source and sink regions, as well as the calculation of moisture recycling indices can be done with the post-processing scripts (still under development - 18/08/2024).
+The delineation of atmospheric watersheds (evaporationsheds and precipitationsheds), analysis on the "most-influential part (MIP)" of the moisture source and sink regions, as well as the calculation of moisture recycling indices can be done with the post-processing scripts (still under development - 18/08/2024).
 
 ## Post-Processing
 
