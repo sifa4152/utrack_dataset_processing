@@ -262,7 +262,6 @@ def atmos_watersheds_geojson(idx, percent):
 
 # =============================================================================
 if __name__ == '__main__':
-    # sys.path.insert(1, '/p/projects/open/simon/bgwater/GCEW/final_report/global_basin_utrack_runs/2024_08_13_basins_selected/watershed_processing')
     import settings
 
     params = pd.read_csv(settings.PARAMS, index_col=0)
