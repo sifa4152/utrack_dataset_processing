@@ -109,3 +109,8 @@ The delineation of atmospheric watersheds (evaporationsheds and precipitationshe
 
 - **atmos_watersheds.py** --> script to delineate atmospheric watersheds from moisture footprints (NetCDF and GeoJSON)
 - **settings.py** --> filepaths and settings
+
+**Next steps**: 
+- add script to calculate terrestrial and internal moisture recycling indices (rho, epsilon, net import/export, etc.) --> needs to be adjusted to consider land fraction as well! 
+- plotting scripts for watersheds using Cartopy
+- finish development on gridcell-polygon-intersection algorithm and add to mask_processing
