@@ -48,7 +48,7 @@ def assemble_job_arrays(zone_id):
             dims=['month', 'lat', 'lon'],
             name="fw_evap_footprint_monthly",
             attrs=dict(description="Forward Monthly Evaporation Footprint",
-                       units="mm/month")
+                       units="l/month")
             )
         bw_assembled = xr.DataArray(
             bw_sum_final,
@@ -56,7 +56,7 @@ def assemble_job_arrays(zone_id):
             dims=['month', 'lat', 'lon'],
             name="bw_evap_footprint_monthly",
             attrs=dict(description="Backward Monthly Evaporation Footprint",
-                       units="mm/month")
+                       units="l/month")
             )
         out_dir_esheds = ensure_output_directory(settings.PATH_MOISTURE_FOOTPRINTS, 'forward_complete')
         out_dir_psheds = ensure_output_directory(settings.PATH_MOISTURE_FOOTPRINTS, 'backward_complete')
