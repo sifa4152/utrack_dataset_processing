@@ -2,7 +2,7 @@
 # Script to convert basin shapefiles to mask arrays and regrid to a specified format
 # Requires GDAL and CDO to be installed
 # State: 18-06-2024, simonfa
-# Usage: ./convert_shapefiles.sh [-a <attribute_or_value>] SHAPEFILE_NAME1 SHAPEFILE_NAME2 ...
+# Usage: ./shp2attr_raster.sh [-a <attribute_or_value>] SHAPEFILE_NAME1 SHAPEFILE_NAME2 ...
 
 # Check if required tools are installed
 command -v gdal_rasterize >/dev/null 2>&1 || { echo >&2 "gdal_rasterize is required but not installed. Aborting."; exit 1; }
@@ -43,7 +43,7 @@ fi
 # Iterate over the provided shapefiles
 for shapefile in "$@"; do
   # Verify that the input file exists with the .shp extension
-  if [[ ! -f "${shapefile}.shp" ]]; then
+  if [[ ! -f "${shapefile}" && ! -f "${shapefile}.shp" ]]; then
     echo "Shapefile ${shapefile}.shp not found. Skipping..."
     continue
   fi
@@ -55,13 +55,16 @@ for shapefile in "$@"; do
 
   echo "Processing $shapefile..."
 
+  # Extract base name for the layer name
+  layer_name=$(basename "$shapefile")
+
   # Determine if the attribute_or_value is a number (fixed value) or a string (attribute name)
   if [[ $attribute_or_value =~ ^[0-9]+$ ]]; then
     # Fixed burn value
-    gdal_rasterize -ot UInt16 -burn $attribute_or_value -te $bbox -tr $resolution $resolution -l $shapefile "${shapefile}.shp" $tiff_file
+    gdal_rasterize -ot UInt16 -burn $attribute_or_value -te $bbox -tr $resolution $resolution -l $layer_name "$shapefile.shp" $tiff_file
   else
     # Attribute-based burn value
-    gdal_rasterize -ot UInt16 -at -a $attribute_or_value -te $bbox -tr $resolution $resolution -l $shapefile "${shapefile}.shp" $tiff_file
+    gdal_rasterize -ot UInt16 -at -a $attribute_or_value -te $bbox -tr $resolution $resolution -l $layer_name "$shapefile.shp" $tiff_file
   fi
 
   if [ $? -ne 0 ]; then
