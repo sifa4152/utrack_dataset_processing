@@ -114,3 +114,6 @@ The delineation of atmospheric watersheds (evaporationsheds and precipitationshe
 - add script to calculate terrestrial and internal moisture recycling indices (rho, epsilon, net import/export, etc.) --> needs to be adjusted to consider land fraction as well! 
 - plotting scripts for watersheds using Cartopy
 - finish development on gridcell-polygon-intersection algorithm and add to mask_processing
+- fix issues with conda environment (yml file install not working!)
+- add functions to utils
+- add explanations regarding params.csv, job packages and how processing of jobs works, also include infos on data pre-processing
