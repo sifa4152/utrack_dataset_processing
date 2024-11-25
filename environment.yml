@@ -1,4 +1,4 @@
-name: utrack_env2
+name: utrack_env
 channels:
   - conda-forge
   - defaults
